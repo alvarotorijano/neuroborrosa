@@ -1,0 +1,9 @@
+{
+	"roomTemp": {
+		"user": "esp8266",
+	  	"host": "127.0.0.1",
+	  	"database": "roomtemp",
+	  	"password": "neuroborrosa",
+	  	"port": 5432
+		}
+}
