@@ -19,7 +19,25 @@ app.get("/data", (req, res, next) => {
 	console.log("Esta es mi temperatura: ");
 	console.log(req.query.temp);
 	console.log(req.query);
- res.json(["Tony","Lisa","Michael","Ginger","Food"]);
+	http.get('http://dataservice.accuweather.com/currentconditions/v1/307144?apikey=6MNOrGmD9u5PSldlVn5Kgyijp4BCQ5lX&details=true', (resp) => {
+		let data = '';
+
+		// A chunk of data has been recieved.
+		resp.on('data', (chunk) => {
+			data += chunk;
+		});
+		// The whole response has been received. Print out the result.
+		resp.on('end', () => {
+			console.log('Tengo respuesta')
+			//console.log(JSON.parse(data));
+			respuesta = JSON.parse(data)
+			console.log(respuesta[0].LocalObservationDateTime)
+		});
+
+	}).on("error", (err) => {
+		console.log("Error: " + err.message);
+	});
+	res.json("La cosa funciona");
 });
 
 app.listen(3000, () => {
