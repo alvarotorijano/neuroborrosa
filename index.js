@@ -1,5 +1,6 @@
 var express = require("express");
 var app = express();
+var colors = require('colors')
 var DBConfig = require ('./databaseConnection.json')
 const { Client } = require('pg')
 
@@ -8,10 +9,9 @@ const DBClient = new Client(DBConfig.roomTemp);
 DBClient.connect()
 	.then((data, err)=>{
 		console.log('Conected to database: '.green)
-		logToFile('Conected to database: '.green)
 	})
 	.catch((data, err) => {
-		console.log(err);
+		console.log(err)
 		console.log(data)
 	})
 
