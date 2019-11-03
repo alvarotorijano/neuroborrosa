@@ -13,3 +13,4 @@ create table register (
 	moment timestamp,
 	primary key (moment)
 );
+
