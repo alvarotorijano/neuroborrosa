@@ -3,8 +3,11 @@ var app = express();
 var colors = require('colors')
 var DBConfig = require ('./databaseConnection.json')
 const { Client } = require('pg')
+const http = require('http');
 
 const DBClient = new Client(DBConfig.roomTemp);
+
+let port = 80
 
 DBClient.connect()
 	.then((data, err)=>{
@@ -40,6 +43,6 @@ app.get("/data", (req, res, next) => {
 	res.json("La cosa funciona");
 });
 
-app.listen(3000, () => {
-	console.log("Server running on port 3000");
+app.listen(port, () => {
+	console.log("Server running on port " + port);
 });
