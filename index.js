@@ -35,7 +35,7 @@ app.get("/data", (req, res, next) => {
 			//console.log(JSON.parse(data));
 			respuesta = JSON.parse(data)
 			console.log(respuesta[0].LocalObservationDateTime)
-			DBClient.query('insert into register ' + '(heating, roomtemp, isdaytime, humidity, temp, windDir, windSpeed, UV, precipitation, cloudCover, moment)', ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11), [req.query.temp, false, respuesta[0].IsDayTime, respuesta[0].RelativeHumidity, respuesta[0].Temperature.Metric.Value, respuesta[0].Wind.Direction.Degrees, respuesta[0].Wind.Speed.Metric.Value, respuesta[0].UVIndex, respuesta[0].PrecipitationSummary.Precipitation.Metric.Value, respuesta[0].CloudCover, respuesta[0].LocalObservationDateTime], (err, res) => {
+			DBClient.query('insert into register ' + '(heating, roomtemp, isdaytime, humidity, temp, windDir, windSpeed, UV, precipitation, cloudCover, moment) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', [req.query.temp, false, respuesta[0].IsDayTime, respuesta[0].RelativeHumidity, respuesta[0].Temperature.Metric.Value, respuesta[0].Wind.Direction.Degrees, respuesta[0].Wind.Speed.Metric.Value, respuesta[0].UVIndex, respuesta[0].PrecipitationSummary.Precipitation.Metric.Value, respuesta[0].CloudCover, respuesta[0].LocalObservationDateTime], (err, res) => {
 				if(err){
 					logToFile('Error insertando en la base de datos: ' + err + '|' + 'insert into ' + product_id.replace('-', '_') + ' (id, price, moment, amount, side) values ($1, $2, $3, $4, $5)',trade_id, price, time, size, side)
 					console.log('Error insertando en la base de datos: ' + err)
