@@ -46,7 +46,7 @@ void loop() {
   static  char url[150];
   memset(url, 0, 150);
   //Serial.println(readTemp());
-  while (1){
+
      if ((WiFiMulti.run() == WL_CONNECTED)) {
 
       WiFiClient client;
@@ -79,6 +79,8 @@ void loop() {
               digitalWrite(LED_BUILTIN, HIGH);
               delay(50);
             }
+            delay(UPDATE_INTERVAL * 1000);
+            ESP.restart();
           }
         } else {
           Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
@@ -88,9 +90,9 @@ void loop() {
       } else {
         Serial.printf("[HTTP} Unable to connect\n");
       }
-      delay(UPDATE_INTERVAL * 1000);
+      
     }
-  }
+  delay(1000);
 }
 
 
