@@ -6,7 +6,7 @@
 */
 
 #include <Arduino.h>
-#include <OneWire.h>
+#include <OneWire.h> //by jim studt https://www.pjrc.com/teensy/td_libs_OneWire.html
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 
@@ -18,7 +18,7 @@ ESP8266WiFiMulti WiFiMulti;
 
 OneWire  ds(D4);  // on pin 10 (a 4.7K resistor is necessary)
 
-#define UPDATE_INTERVAL 900
+#define UPDATE_INTERVAL 1800
 
 void setup() {
   pinMode (LED_BUILTIN, OUTPUT);
